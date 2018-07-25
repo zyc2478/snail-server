@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8092
   servlet:
     context-path: /wh
 spring:
@@ -10,7 +10,7 @@ spring:
     password: 12345
   redis:
     database: 0
-    host: 127.0.0.1
+    host: 59.110.169.156
     port: 6379
     password: null
 mybatis:
