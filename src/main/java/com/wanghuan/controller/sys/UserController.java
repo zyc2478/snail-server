@@ -1,5 +1,6 @@
 package com.wanghuan.controller.sys;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -49,6 +50,13 @@ public class UserController {
 		pageResult.setTotalCount(userService.usersSize(loginName, pageSize, page * pageSize));
 		log.debug("The method is ending");
 		return pageResult;
+	}
+
+	@GetMapping("/users/all")
+	public List<UserEntity> getAllUsers(String loginName) {
+		List<UserEntity> userList = userService.getAllUsers(loginName);
+		log.debug("The method is ending");
+		return userList;
 	}
 
 	/**

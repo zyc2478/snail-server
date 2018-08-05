@@ -35,6 +35,13 @@ public interface UserDao {
 	public ArrayList<UserEntity> usersList(@Param("loginName")String loginName,@Param("pageSize") int pageSize,@Param("start") int start);
 
 	/**
+	 * 获取所有user 列表
+	 * @param loginName
+	 * @return
+	 */
+	public ArrayList<UserEntity> getAllUsers(@Param("loginName")String loginName);
+
+	/**
 	 * 获取user列表的总量
 	 * @param loginName
 	 * @param pageSize

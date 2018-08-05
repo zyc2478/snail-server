@@ -26,6 +26,15 @@ public interface UserService {
 	public List<UserEntity> usersList(String loginName, int pageSize, int start);
 
 	/**
+	 * 获取所有的user
+	 * @param loginName
+	 * @return
+	 */
+
+	public List<UserEntity> getAllUsers(String loginName);
+
+
+	/**
 	 * 获取user列表的总量
 	 * @param loginName
 	 * @param pageSize

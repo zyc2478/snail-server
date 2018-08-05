@@ -33,7 +33,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserEntity> usersList(String loginName, int pageSize, int start) {
-		return userDao.usersList( loginName,  pageSize,  start);
+		return userDao.usersList(loginName,  pageSize,  start);
+	}
+
+	@Override
+	public List<UserEntity> getAllUsers(String loginName) {
+		return userDao.getAllUsers(loginName);
 	}
 
 	@Override
