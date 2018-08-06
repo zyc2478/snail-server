@@ -1,8 +1,9 @@
 package com.wanghuan.service.impl.sys;
 
-import com.wanghuan.dao.VwBidListDAO;
+import com.wanghuan.dao.VwBidListDao;
 import com.wanghuan.model.sys.VwBidListEntity;
 import com.wanghuan.service.sys.VwBidListService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -10,16 +11,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Service("value=vwBidListServiceImpl")
+@Service(value="vwBidListServiceImpl")
 public class VwBidListServiceImpl implements VwBidListService {
 
-    @Resource
-    private VwBidListDAO vwBidListDAO;
+    @Autowired
+    private VwBidListDao vwBidListDao;
 
     @Override
     public List<VwBidListEntity> getBidSummary(int diffDays) {
-        List<VwBidListEntity> bidSummaryList = vwBidListDAO.getVwBidSummary();
-        List<VwBidListEntity> bidSummaryResult = new ArrayList<VwBidListEntity>();
+        List<VwBidListEntity> bidSummaryList = vwBidListDao.getVwBidSummary();
+        List<VwBidListEntity> bidSummaryResult = new ArrayList<>();
 
         for(int i=0; i<bidSummaryList.size();i++){
            VwBidListEntity vwBidListEntity = bidSummaryResult.get(i);
@@ -31,4 +32,11 @@ public class VwBidListServiceImpl implements VwBidListService {
         }
         return bidSummaryList;
     }
+
+    @Override
+    public List<VwBidListEntity> getBidByDate(String bidDate) {
+        return vwBidListDao.selectByBidDate(bidDate);
+    }
+
+
 }

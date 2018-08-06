@@ -83,12 +83,12 @@ public class RoleController {
 		return groupId;
 	}
 	
-	/**
+/*	*//**
 	 * 得到角色全部数据
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/roles/all")
 	public List<RoleEntity> allRoles(){
 		return roleService.allRoles();
-	}
+	}*/
 }

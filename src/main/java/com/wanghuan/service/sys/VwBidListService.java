@@ -7,4 +7,5 @@ import java.util.List;
 public interface VwBidListService {
 
     List<VwBidListEntity> getBidSummary(int lastDaysNum);
+    List<VwBidListEntity> getBidByDate(String bidDate);
 }

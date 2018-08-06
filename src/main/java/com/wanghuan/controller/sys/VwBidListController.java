@@ -1,33 +1,63 @@
 package com.wanghuan.controller.sys;
 
+import com.wanghuan.model.sys.PageResult;
 import com.wanghuan.model.sys.VwBidListEntity;
+import com.wanghuan.service.sys.RoleService;
 import com.wanghuan.service.sys.VwBidListService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
-@Controller
-@RequestMapping("/vwBidList")
+@RestController
 public class VwBidListController {
 
-    @Resource
+    private Logger log = LoggerFactory.getLogger(RoleController.class);
+
+    @Resource(name = "vwBidListServiceImpl")
     private VwBidListService vwBidListService;
+/*
+    @Resource(name = "roleServiceImpl")
+    private RoleService roleService;*/
 
-    @CrossOrigin(origins="*",maxAge=3600)
-    @RequestMapping(value="/getVwBidList/{diffDays}", produces = "text/json; charset=utf-8")
-    @ResponseBody
-    public List<VwBidListEntity> getBidList(@PathVariable int diffDays) {
+/*    @GetMapping("/vwbidlist")
+    public List<VwBidListEntity> getBidList() {
 
-        List<VwBidListEntity>  vwBidSummary = this.vwBidListService.getBidSummary(diffDays);
+        List<VwBidListEntity>  vwBidSummary = vwBidListService.getBidSummary(30);
 
         return vwBidSummary;
+    }*/
+
+/*    @GetMapping("/vwbidbydate")
+    public VwBidListEntity getVwBid(@PathVariable int id){
+        return vwBidListService.getBidList(id);
+    }*/
+
+    @GetMapping("/selectVwBidList")
+    public PageResult selectVwBidList(){
+        String bidDate = "2018-6-12";
+        System.out.println("********  in getVwBid *******");
+        PageResult pr = new PageResult();
+        pr.setData(vwBidListService.getBidByDate(bidDate));
+        return pr;
     }
+
+    @GetMapping("/vwbidlist")
+    public PageResult getBidList() {
+        PageResult pageResult = new PageResult();
+        pageResult.setData(vwBidListService.getBidSummary(20));
+        return pageResult;
+    }
+/*    @GetMapping("/vwrolelist")
+    public List<VwBidListEntity> getRoleList() {
+
+        List<VwBidListEntity>  vwBidSummary = vwBidListService.getBidSummary(30);
+
+        return vwBidSummary;
+    }*/
 /*    @RequestMapping(value="/getVwBidList/{diffDays}", produces = "text/json; charset=utf-8")
     @ResponseBody
     public List<VwBidList> getBidList(@PathVariable int diffDays) {
